@@ -14,3 +14,10 @@ export const academicDepartmentRelationalFieldsMapper: {
 } = {
   academicFacultyId: 'academicFaculty',
 };
+
+export const AcademicDepartmentOptionsFields: string[] = [
+  'limit',
+  'page',
+  'sortBy',
+  'sortOrder',
+];
