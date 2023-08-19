@@ -35,7 +35,19 @@ const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getDataById = catchAsync(async (req: Request, res: Response) => {
+  const result = await academicSemesterService.getDataById(req.params.id);
+
+  sendResponse<AcademicSemester>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Academic Semester Fetched successfully',
+    data: result,
+  });
+});
+
 export const academicSemesterController = {
   insertIntoDB,
   getAllFromDB,
+  getDataById,
 };
