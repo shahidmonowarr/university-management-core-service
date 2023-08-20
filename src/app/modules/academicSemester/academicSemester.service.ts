@@ -63,7 +63,9 @@ const getAllFromDB = async (
             createdAt: 'desc',
           },
   });
-  const total = await prisma.academicSemester.count();
+  const total = await prisma.academicSemester.count({
+    where: whereCondition,
+  });
   return {
     meta: {
       total,
