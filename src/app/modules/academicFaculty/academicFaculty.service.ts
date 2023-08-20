@@ -61,7 +61,9 @@ const getAll = async (
           },
   });
 
-  const total = await prisma.academicFaculty.count();
+  const total = await prisma.academicFaculty.count({
+    where: whereCondition,
+  });
 
   return {
     meta: {
