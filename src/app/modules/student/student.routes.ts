@@ -18,4 +18,6 @@ router.post(
   studentController.insertIntoDB
 );
 
+router.delete('/:id', studentController.deleteFromDB);
+
 export const studentRoutes = router;
