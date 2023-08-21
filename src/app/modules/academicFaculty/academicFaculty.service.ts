@@ -84,8 +84,32 @@ const getDataById = async (id: string): Promise<AcademicFaculty | null> => {
   return result;
 };
 
+const updateById = async (
+  id: string,
+  data: AcademicFaculty
+): Promise<AcademicFaculty | null> => {
+  const result = await prisma.academicFaculty.update({
+    where: {
+      id,
+    },
+    data,
+  });
+  return result;
+};
+
+const deleteById = async (id: string): Promise<AcademicFaculty | null> => {
+  const result = await prisma.academicFaculty.delete({
+    where: {
+      id,
+    },
+  });
+  return result;
+};
+
 export const academicFacultyService = {
   create,
   getAll,
   getDataById,
+  updateById,
+  deleteById,
 };
