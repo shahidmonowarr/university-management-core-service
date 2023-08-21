@@ -11,6 +11,7 @@ router.get('/', academicFacultyController.getAllFromDB);
 router.get('/:id', academicFacultyController.getDataById);
 router.post(
   '/',
+  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
   validateRequest(academicFacultyValidation.create),
   academicFacultyController.insertIntoDB
 );

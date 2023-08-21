@@ -46,8 +46,35 @@ const getDataById = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const updateById = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const payload = req.body;
+  const result = await academicSemesterService.updateById(id, payload);
+
+  sendResponse<AcademicSemester>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Academic Semester Updated successfully',
+    data: result,
+  });
+});
+
+const deleteById = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await academicSemesterService.deleteById(id);
+
+  sendResponse<AcademicSemester>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Academic Semester Deleted successfully',
+    data: result,
+  });
+});
+
 export const academicSemesterController = {
   insertIntoDB,
   getAllFromDB,
   getDataById,
+  updateById,
+  deleteById,
 };
