@@ -35,7 +35,48 @@ const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getOneFromDB = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await buildingService.getOneFromDB(id);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Building fetched successfully',
+    data: result,
+  });
+});
+
+const updateOneInDB = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const payload = req.body;
+
+  const result = await buildingService.updateOneInDB(id, payload);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Building updated successfully',
+    data: result,
+  });
+});
+
+const deleteOneFromDB = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await buildingService.deleteOneFromDB(id);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Building deleted successfully',
+    data: result,
+  });
+});
+
 export const buildingController = {
   insertIntoDB,
   getAllFromDB,
+  getOneFromDB,
+  updateOneInDB,
+  deleteOneFromDB,
 };
