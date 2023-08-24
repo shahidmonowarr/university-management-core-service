@@ -21,6 +21,10 @@ router.patch(
   validateRequest(buildingValidation.update),
   buildingController.updateOneInDB
 );
-router.delete('/:id', buildingController.deleteOneFromDB);
+router.delete(
+  '/:id',
+  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  buildingController.deleteOneFromDB
+);
 
 export const buildingRoutes = router;
