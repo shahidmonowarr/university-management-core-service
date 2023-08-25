@@ -15,6 +15,12 @@ router.post(
   validateRequest(courseValidation.create),
   courseController.insertIntoDB
 );
+router.patch(
+  '/:id',
+  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  validateRequest(courseValidation.update),
+  courseController.updateByIdFromDB
+);
 router.delete(
   '/:id',
   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
