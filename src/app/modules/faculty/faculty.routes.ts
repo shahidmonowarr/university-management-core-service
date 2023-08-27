@@ -28,7 +28,17 @@ router.delete(
   facultyController.deleteFromDB
 );
 
-router.post('/:id/assign-courses', facultyController.assignCourses);
-router.delete('/:id/remove-courses', facultyController.removeCourses);
+router.post(
+  '/:id/assign-courses',
+  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  validateRequest(facultyValidation.assignOrRemoveCourses),
+  facultyController.assignCourses
+);
+router.delete(
+  '/:id/remove-courses',
+  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  validateRequest(facultyValidation.assignOrRemoveCourses),
+  facultyController.removeCourses
+);
 
 export const facultyRoutes = router;

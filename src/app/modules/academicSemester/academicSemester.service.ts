@@ -23,8 +23,6 @@ const getAllFromDB = async (
 
   const { searchTerm, ...filterData } = filters;
 
-  console.log(options);
-
   const andConditions = [];
 
   if (searchTerm) {
