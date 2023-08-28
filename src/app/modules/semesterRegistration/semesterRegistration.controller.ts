@@ -51,8 +51,32 @@ const getOneFromDB = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const updateOneInDB = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await semesterRegistrationService.updateOneInDB(id, req.body);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'SemesterRegistration updated successfully',
+    data: result,
+  });
+});
+
+const deleteOneFromDB = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await semesterRegistrationService.deleteOneFromDB(id);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'SemesterRegistration deleted successfully',
+    data: result,
+  });
+});
+
 export const semesterRegistrationController = {
   insertIntoDB,
   getAllFromDB,
   getOneFromDB,
+  updateOneInDB,
+  deleteOneFromDB,
 };
