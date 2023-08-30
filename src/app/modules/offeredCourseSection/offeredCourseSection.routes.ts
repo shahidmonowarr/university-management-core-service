@@ -3,6 +3,10 @@ import { offeredCourseSectionController } from './offeredCourseSection.controlle
 
 const router = express.Router();
 
+router.get('/', offeredCourseSectionController.getAllFromDB);
+router.get('/:id', offeredCourseSectionController.getByIdFromDB);
 router.post('/', offeredCourseSectionController.insertIntoDB);
+router.patch('/:id', offeredCourseSectionController.updateOneInDB);
+router.delete('/:id', offeredCourseSectionController.deleteByIdFromDB);
 
 export const offeredCourseSectionRoutes = router;
