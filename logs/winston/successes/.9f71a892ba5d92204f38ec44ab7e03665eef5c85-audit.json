@@ -284,6 +284,11 @@
             "date": 1693544815360,
             "name": "C:\\level-2\\university-management-core-service\\logs\\winston\\successes\\phu-2023-01-09-11-success.log",
             "hash": "ec9e7db81470326dd9a4c446747d854f08648806edd570848325282bf6203e30"
+        },
+        {
+            "date": 1693548150731,
+            "name": "C:\\level-2\\university-management-core-service\\logs\\winston\\successes\\phu-2023-01-09-12-success.log",
+            "hash": "4f970de09c007073d4bcface177ef7ad0d186a84b4b4e1926c6243354e021952"
         }
     ],
     "hashType": "sha256"
