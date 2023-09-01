@@ -9,6 +9,13 @@ const router = express.Router();
 
 router.get('/', semesterRegistrationController.getAllFromDB);
 router.get('/:id', semesterRegistrationController.getOneFromDB);
+
+router.post(
+  '/start-registration',
+  auth(ENUM_USER_ROLE.STUDENT),
+  semesterRegistrationController.startMyRegistration
+);
+
 router.post(
   '/',
   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
