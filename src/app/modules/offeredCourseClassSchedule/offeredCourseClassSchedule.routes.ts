@@ -9,7 +9,12 @@ const router = express.Router();
 
 router.get('/', offeredCourseClassScheduleController.getAllFromDB);
 router.get('/:id', offeredCourseClassScheduleController.getByIdFromDB);
-router.post('/', offeredCourseClassScheduleController.insertIntoDB);
+router.post(
+  '/',
+  validateRequest(offeredCourseClassScheduleValidation.create),
+  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  offeredCourseClassScheduleController.insertIntoDB
+);
 
 router.patch(
   '/:id',
