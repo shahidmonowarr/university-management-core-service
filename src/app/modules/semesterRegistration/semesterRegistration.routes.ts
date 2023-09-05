@@ -7,6 +7,11 @@ import { semesterRegistrationValidation } from './semesterRegistration.validatio
 
 const router = express.Router();
 
+router.get(
+  '/get-my-registration',
+  auth(ENUM_USER_ROLE.STUDENT),
+  semesterRegistrationController.getMyRegistration
+);
 router.get('/', semesterRegistrationController.getAllFromDB);
 router.get('/:id', semesterRegistrationController.getOneFromDB);
 
