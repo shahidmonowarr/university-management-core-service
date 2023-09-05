@@ -34,4 +34,10 @@ router.delete(
   semesterRegistrationController.deleteOneFromDB
 );
 
+router.post(
+  '/enroll-into-course',
+  auth(ENUM_USER_ROLE.STUDENT),
+  semesterRegistrationController.enrollIntoCourse
+);
+
 export const semesterRegistrationRoutes = router;
