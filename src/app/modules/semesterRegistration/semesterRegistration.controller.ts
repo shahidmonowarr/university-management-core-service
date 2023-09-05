@@ -97,7 +97,7 @@ const enrollIntoCourse = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Student SemesterRegistration started successfully',
+    message: 'Enrolled into course successfully',
     data: result,
   });
 });
