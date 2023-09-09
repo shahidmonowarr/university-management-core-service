@@ -96,6 +96,11 @@ const createStudentEnrolledCourseDefaultMark = async (
   }
 };
 
+const updateStudentMarks = async (payload: any) => {
+  console.log(payload);
+};
+
 export const studentEnrolledCourseMarkService = {
   createStudentEnrolledCourseDefaultMark,
+  updateStudentMarks,
 };
