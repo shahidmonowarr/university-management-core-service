@@ -7,11 +7,14 @@ import {
   DefaultArgs,
   PrismaClientOptions,
 } from '@prisma/client/runtime/library';
+import httpStatus from 'http-status';
+import ApiError from '../../../errors/ApiError';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import prisma from '../../../shared/prisma';
 import { IStudentEnrolledCourseMarkFilterRequest } from './studentEnrolledCourseMark.interface';
+import { studentEnrolledCourseMarkUtils } from './studentEnrolledCourseMark.utils';
 
 const createStudentEnrolledCourseDefaultMark = async (
   prismaClient: Omit<
@@ -147,6 +150,46 @@ const getAllFromDB = async (
 
 const updateStudentMarks = async (payload: any) => {
   console.log(payload);
+  const { studentId, academicSemesterId, courseId, marks, examType } = payload;
+
+  const studentEnrolledCourseMarks =
+    await prisma.studentEnrolledCourseMark.findFirst({
+      where: {
+        student: {
+          id: studentId,
+        },
+        academicSemester: {
+          id: academicSemesterId,
+        },
+        studentEnrolledCourse: {
+          course: {
+            id: courseId,
+          },
+        },
+        examType: examType,
+      },
+    });
+
+  if (!studentEnrolledCourseMarks) {
+    throw new ApiError(
+      httpStatus.BAD_REQUEST,
+      'Student enrolled course mark not found'
+    );
+  }
+
+  const result = studentEnrolledCourseMarkUtils.getGradeFromMarks(marks);
+
+  const updateStudentMarks = await prisma.studentEnrolledCourseMark.update({
+    where: {
+      id: studentEnrolledCourseMarks.id,
+    },
+    data: {
+      marks,
+      grade: result.grade,
+    },
+  });
+
+  return updateStudentMarks;
 };
 
 export const studentEnrolledCourseMarkService = {
