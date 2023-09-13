@@ -11,7 +11,7 @@ import {
   offeredCourseSectionRelationalFields,
   offeredCourseSectionRelationalFieldsMapper,
   offeredCourseSectionSearchableFields,
-} from './offeredCourseSection.constrants';
+} from './offeredCourseSection.constants';
 import {
   IClassSchedule,
   IOfferedCourseSectionCreate,
