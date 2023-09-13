@@ -35,7 +35,21 @@ const updateStudentMarks = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const updateFinalMarks = catchAsync(async (req: Request, res: Response) => {
+  const result = await studentEnrolledCourseMarkService.updateFinalMarks(
+    req.body
+  );
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Final marks updated successfully',
+    data: result,
+  });
+});
+
 export const studentEnrolledCourseMarkController = {
-  updateStudentMarks,
   getAllFromDB,
+  updateStudentMarks,
+  updateFinalMarks,
 };
