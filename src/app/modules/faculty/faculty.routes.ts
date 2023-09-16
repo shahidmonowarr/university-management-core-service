@@ -13,7 +13,13 @@ router.get(
   auth(ENUM_USER_ROLE.FACULTY),
   facultyController.myCourses
 );
+router.get(
+  '/my-course-students',
+  auth(ENUM_USER_ROLE.FACULTY),
+  facultyController.getMyCourseStudents
+);
 router.get('/:id', facultyController.getDataById);
+
 router.post(
   '/',
   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
