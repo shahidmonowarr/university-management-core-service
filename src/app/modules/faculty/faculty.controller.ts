@@ -99,7 +99,7 @@ const myCourses = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Course faculty deleted successfully',
+    message: 'My courses fetched successfully',
     data: result,
   });
 });
