@@ -8,6 +8,11 @@ import { facultyValidation } from './faculty.validation';
 const router = express.Router();
 
 router.get('/', facultyController.getAllFromDB);
+router.get(
+  '/my-courses',
+  auth(ENUM_USER_ROLE.FACULTY),
+  facultyController.myCourses
+);
 router.get('/:id', facultyController.getDataById);
 router.post(
   '/',
