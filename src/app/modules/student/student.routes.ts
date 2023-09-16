@@ -18,6 +18,11 @@ router.get(
   auth(ENUM_USER_ROLE.STUDENT),
   studentController.getMyCourseSchedule
 );
+router.get(
+  '/my-academic-info',
+  auth(ENUM_USER_ROLE.STUDENT),
+  studentController.getMyAcademicInfo
+);
 router.get('/:id', studentController.getDataById);
 router.patch(
   '/:id',

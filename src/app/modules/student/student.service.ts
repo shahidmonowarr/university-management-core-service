@@ -1,4 +1,4 @@
-import { Prisma, Student } from '@prisma/client';
+import { Prisma, Student, StudentEnrolledCourseStatus } from '@prisma/client';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
@@ -9,6 +9,7 @@ import {
   studentSearchableFields,
 } from './student.constants';
 import { IStudentFilterRequest } from './student.interface';
+import { studentUtils } from './student.utils';
 
 const insertIntoDB = async (data: Student): Promise<Student> => {
   const result = await prisma.student.create({
@@ -237,6 +238,40 @@ const getMyCourseSchedule = async (
   return result;
 };
 
+const getMyAcademicInfo = async (authUserId: string) => {
+  const academicInfo = await prisma.studentAcademicInfo.findFirst({
+    where: {
+      student: {
+        studentId: authUserId,
+      },
+    },
+  });
+
+  const enrolledCourses = await prisma.studentEnrolledCourse.findMany({
+    where: {
+      student: {
+        studentId: authUserId,
+      },
+      status: StudentEnrolledCourseStatus.COMPLETED,
+    },
+    include: {
+      course: true,
+      academicSemester: true,
+    },
+    orderBy: {
+      createdAt: 'asc',
+    },
+  });
+
+  const groupByAcademicSemester =
+    studentUtils.groupByAcademicSemester(enrolledCourses);
+
+  return {
+    academicInfo,
+    courses: groupByAcademicSemester,
+  };
+};
+
 export const studentService = {
   insertIntoDB,
   getAllFromDB,
@@ -245,4 +280,5 @@ export const studentService = {
   deleteFromDB,
   myCourses,
   getMyCourseSchedule,
+  getMyAcademicInfo,
 };
