@@ -18,15 +18,15 @@ const router = express.Router();
 const moduleRoutes = [
   // ... routes
   {
-    path: '/academic-Semesters',
+    path: '/academic-semesters',
     route: academicSemesterRoutes,
   },
   {
-    path: '/academic-Faculties',
+    path: '/academic-faculties',
     route: academicFacultyRoutes,
   },
   {
-    path: '/academic-Departments',
+    path: '/academic-departments',
     route: academicDepartmentRoutes,
   },
   {
