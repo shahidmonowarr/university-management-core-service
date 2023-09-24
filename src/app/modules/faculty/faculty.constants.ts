@@ -36,3 +36,5 @@ export const facultyOptionsFields: string[] = [
   'sortBy',
   'sortOrder',
 ];
+
+export const EVENT_FACULTY_CREATED = 'faculty.created';
