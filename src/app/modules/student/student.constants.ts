@@ -37,3 +37,5 @@ export const studentOptionsFields: string[] = [
   'sortBy',
   'sortOrder',
 ];
+
+export const EVENT_STUDENT_CREATED = 'student.created';

@@ -50,7 +50,7 @@ const moduleRoutes = [
     route: courseRoutes,
   },
   {
-    path: '/semester-registration',
+    path: '/semester-registrations',
     route: semesterRegistrationRoutes,
   },
   {
